@@ -58,10 +58,18 @@ def generate_launch_description():
                 ComposableNode(
                     package='velodyne_pointcloud',
                     plugin='velodyne_pointcloud::Transform',
-                    name='velodyne_transform_node',
+                    name='',
                     parameters=[params]),
             ],
             output='both',
     )
 
-    return LaunchDescription([container])
+    #static_tf_broadcaster_node = Node(
+    #    package='tf2_ros',
+    #    executable='static_transform_publisher',
+    #    arguments=['0', '0', '0', '0', '0', '0', 'velodyne_top', 'velodyne'],
+    #    name='static_broadcaster_lidar'
+    #)
+
+
+    return LaunchDescription([container, static_tf_broadcaster_node])
